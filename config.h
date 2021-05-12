@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -66,6 +67,11 @@ static const char *dmenudesktop[] = { "j4-dmenu-desktop" };
 /* bg opacity */
 float alpha = 0.8;
 
+static const char *upvol[]   = { "pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upbrightness[] = { "brightnessctl", "s", "15+" };
+static const char *downbrightness[] = { "brightnessctl", "s", "15-" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -96,6 +102,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_s,      show,           {0} },
 	{ MODKEY,                       XK_h,      hide,           {0} },
+  { 0,                            XF86XK_AudioLowerVolume,   spawn,   {.v = downvol } },
+  { 0,                            XF86XK_AudioMute,          spawn,   {.v = mutevol } },
+  { 0,                            XF86XK_AudioRaiseVolume,   spawn,   {.v = upvol   } },
+  { 0,                            XF86XK_AudioPrev,                  spawn,   {.v = downbrightness } },
+  { 0,                            XF86XK_AudioNext,               spawn,   {.v = upbrightness } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
