@@ -34,6 +34,7 @@ static const Rule rules[] = {
   { "Firefox",  NULL,       NULL,                       1 << 8,       0,           -1 },
   { NULL,       NULL,       "Picture-in-Picture",       ~0,           1,           -1 },
   { NULL,       NULL,       "Godot",                    0,            1,           -1 },
+  { NULL,       NULL,       "Iris2D",                   0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -55,6 +56,7 @@ static const Layout layouts[] = {
   { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
   { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
   { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+#define PrintScreenDWM 0x0000ff61
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -104,6 +106,8 @@ static Key keys[] = {
   { MODKEY,                       XK_backslash, spawn,       SHCMD("lisa screen wide") },
   { MODKEY,                       XK_bracketleft, spawn,     SHCMD("lisa screen left") },
   { MODKEY,                       XK_bracketright, spawn,    SHCMD("lisa screen right") },
+  { MODKEY|ShiftMask,             XK_F12, spawn,             SHCMD("flameshot screen -p ~/Pictures/Screenshot") },
+  { MODKEY,                       XK_F12, spawn,             SHCMD("flamewhot gui") },
   { MODKEY,                       XK_s,      show,           {0} },
   { MODKEY,                       XK_h,      hide,           {0} },
   { 0,                            XF86XK_AudioLowerVolume,   spawn,   {.v = downvol } },
