@@ -64,7 +64,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_crimson, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux" };
 static const char *dmenudesktop[] = { "j4-dmenu-desktop" };
 
 /* bg opacity */
@@ -109,7 +109,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_F12, spawn,             SHCMD("flameshot screen -p ~/Pictures/Screenshot") },
   { MODKEY,                       XK_F12, spawn,             SHCMD("flamewhot gui") },
   { MODKEY,                       XK_s,      show,           {0} },
-  { MODKEY,                       XK_h,      hide,           {0} },
+  // { MODKEY,                       XK_h,      hide,           {0} },
   { 0,                            XF86XK_AudioLowerVolume,   spawn,   {.v = downvol } },
   { 0,                            XF86XK_AudioMute,          spawn,   {.v = mutevol } },
   { 0,                            XF86XK_AudioRaiseVolume,   spawn,   {.v = upvol   } },
